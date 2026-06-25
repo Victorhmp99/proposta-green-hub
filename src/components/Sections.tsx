@@ -825,7 +825,7 @@ export function Plans() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="flex select-none items-center gap-1 text-sm text-cream/30 blur-[5px]"
+                      className="flex select-none items-center gap-1 text-sm text-cream/35"
                     >
                       <span>3m R$ ••••/mês</span>
                       <span>· 12m R$ ••••/mês</span>

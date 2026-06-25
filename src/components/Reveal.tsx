@@ -33,10 +33,9 @@ export function Reveal({
   const { ref, progress } = useScrollEntrance();
   const opacity = mv(progress, 0, 1);
   const ty = mv(progress, y, 0);
-  const blur = useTransform(progress, [0, 1], ["blur(6px)", "blur(0px)"]);
 
   return (
-    <motion.div ref={ref} style={{ opacity, y: ty, filter: blur }} className={className}>
+    <motion.div ref={ref} style={{ opacity, y: ty }} className={className}>
       {children}
     </motion.div>
   );
@@ -57,10 +56,9 @@ export function SlideReveal({
   const { ref, progress } = useScrollEntrance();
   const opacity = mv(progress, 0, 1);
   const tx = mv(progress, direction === "left" ? -distance : distance, 0);
-  const blur = useTransform(progress, [0, 1], ["blur(6px)", "blur(0px)"]);
 
   return (
-    <motion.div ref={ref} style={{ opacity, x: tx, filter: blur }} className={className}>
+    <motion.div ref={ref} style={{ opacity, x: tx }} className={className}>
       {children}
     </motion.div>
   );
@@ -85,10 +83,9 @@ export function ZoomInPanel({ children }: { children: ReactNode }) {
   const { ref, progress } = useScrollEntrance(["start 100%", "start 60%"]);
   const scale = mv(progress, 0.82, 1);
   const opacity = mv(progress, 0, 1);
-  const blur = useTransform(progress, [0, 1], ["blur(8px)", "blur(0px)"]);
 
   return (
-    <motion.div ref={ref} style={{ scale, opacity, filter: blur }}>
+    <motion.div ref={ref} style={{ scale, opacity }}>
       {children}
     </motion.div>
   );
@@ -99,10 +96,9 @@ export function ZoomOutPanel({ children }: { children: ReactNode }) {
   const { ref, progress } = useScrollEntrance(["start 100%", "start 60%"]);
   const scale = mv(progress, 1.22, 1);
   const opacity = mv(progress, 0, 1);
-  const blur = useTransform(progress, [0, 1], ["blur(8px)", "blur(0px)"]);
 
   return (
-    <motion.div ref={ref} style={{ scale, opacity, filter: blur }}>
+    <motion.div ref={ref} style={{ scale, opacity }}>
       {children}
     </motion.div>
   );
@@ -141,10 +137,9 @@ function SlideSectionPanel({
     [direction === "left" ? "-12%" : "12%", "0%"]
   );
   const opacity = mv(progress, 0, 1);
-  const blur = useTransform(progress, [0, 1], ["blur(8px)", "blur(0px)"]);
 
   return (
-    <motion.div ref={ref} style={{ x, opacity, filter: blur }}>
+    <motion.div ref={ref} style={{ x, opacity }}>
       {children}
     </motion.div>
   );
