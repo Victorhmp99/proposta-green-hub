@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { asset } from "@/lib/basePath";
 import { Reveal, SlideReveal, SlideUpPanel, RevealStagger, staggerItem } from "./Reveal";
 import { Section, Eyebrow, Kicker } from "./Section";
 import { Tilt3D } from "./Tilt3D";
@@ -83,7 +84,7 @@ export function Origin() {
           <Float distance={8} duration={5}>
             <div className="relative mx-auto max-w-sm overflow-hidden rounded-2xl shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7)]">
               <Image
-                src="/quem-somos/5037628289387793361.jpg"
+                src={asset("/quem-somos/5037628289387793361.jpg")}
                 alt="Victor Hugo e Victor Caixeta, fundadores da Green Hub"
                 width={1280}
                 height={1067}
@@ -354,7 +355,7 @@ function TeamVisual({ type }: { type: VisualType }) {
       <div className="mb-5 flex items-center gap-3">
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white p-2.5 shadow-lg">
           <Image
-            src="/team-visuals/meta-ads.png"
+            src={asset("/team-visuals/meta-ads.png")}
             alt="Meta Ads"
             width={48}
             height={48}
@@ -363,7 +364,7 @@ function TeamVisual({ type }: { type: VisualType }) {
         </div>
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white p-2.5 shadow-lg">
           <Image
-            src="/team-visuals/google-ads.png"
+            src={asset("/team-visuals/google-ads.png")}
             alt="Google Ads"
             width={48}
             height={48}
@@ -385,7 +386,7 @@ function TeamVisual({ type }: { type: VisualType }) {
           <span className="h-2 w-2 rounded-full bg-mint/70" />
         </div>
         <Image
-          src="/team-visuals/crm-screenshot.jpg"
+          src={asset("/team-visuals/crm-screenshot.jpg")}
           alt="CRM Green Hub"
           width={640}
           height={360}

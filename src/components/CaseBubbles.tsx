@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { asset } from "@/lib/basePath";
 
 const images = [
   "5037628289387793363.jpg",
@@ -123,7 +124,7 @@ function Bubble({
         className="relative h-full w-full overflow-hidden rounded-[1.5rem] border border-white/15 bg-[#060a08] shadow-[0_20px_45px_-12px_rgba(0,0,0,0.6)] ring-1 ring-mint/20"
       >
         <Image
-          src={`/cases/${src}`}
+          src={asset(`/cases/${src}`)}
           alt="Resultado de cliente Green Hub"
           fill
           sizes="160px"

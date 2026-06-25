@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 import { SeedOrb, MetallicOrb, GoldBar, EmeraldGem } from "./MaterialOrb";
+import { asset } from "@/lib/basePath";
 
 const drifters = [
   {
@@ -124,7 +125,7 @@ export function Hero() {
           }}
         />
         <Image
-          src="/brand/logo-icon-transparent.png"
+          src={asset("/brand/logo-icon-transparent.png")}
           alt="Green Hub"
           width={110}
           height={162}
