@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# arquivos de origem (logos brutos, fotos não otimizadas) — não vão pro deploy
+/_source-assets/
+
 # production
 /build
 
