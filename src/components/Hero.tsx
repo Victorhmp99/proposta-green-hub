@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
 import { SeedOrb, MetallicOrb, GoldBar, EmeraldGem } from "./MaterialOrb";
 import { asset } from "@/lib/basePath";
+import { useContent } from "@/content/ContentContext";
 
 const drifters = [
   {
@@ -75,6 +76,7 @@ function Drifter({
 }
 
 export function Hero() {
+  const { content } = useContent();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const smx = useSpring(mx, { stiffness: 60, damping: 20 });
@@ -140,7 +142,7 @@ export function Hero() {
         transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 font-display text-5xl sm:text-7xl tracking-wide text-cream"
       >
-        GREEN HUB
+        {content.hero.title}
       </motion.h1>
 
       <motion.p
@@ -149,7 +151,7 @@ export function Hero() {
         transition={{ duration: 0.9, delay: 0.3 }}
         className="relative z-10 mt-4 font-body text-sm sm:text-base uppercase tracking-[0.3em] text-mint/80"
       >
-        Hub de Soluções para Clínicas de Saúde
+        {content.hero.subtitle}
       </motion.p>
 
       <motion.p
@@ -158,9 +160,9 @@ export function Hero() {
         transition={{ duration: 0.9, delay: 0.45 }}
         className="text-gradient-gold relative z-10 mt-10 max-w-2xl font-semibold text-2xl sm:text-4xl leading-snug"
       >
-        &ldquo;Plantamos a estratégia.
+        {content.hero.quoteLine1}
         <br />
-        Você colhe a agenda cheia.&rdquo;
+        {content.hero.quoteLine2}
       </motion.p>
 
       <motion.div
@@ -169,7 +171,7 @@ export function Hero() {
         transition={{ duration: 1, delay: 1 }}
         className="absolute bottom-10 flex flex-col items-center gap-2 text-mint/60"
       >
-        <span className="text-xs uppercase tracking-[0.2em]">Proposta Comercial</span>
+        <span className="text-xs uppercase tracking-[0.2em]">{content.hero.badge}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}

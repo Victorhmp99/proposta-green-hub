@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { ContentProvider } from "@/content/ContentContext";
+import { EditModeButton } from "@/components/editor/EditModeButton";
 
 const display = Cormorant_Garamond({
   variable: "--font-display",
@@ -32,7 +34,10 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#0E1F16] text-[#F4F7F5]">
-        {children}
+        <ContentProvider>
+          {children}
+          <EditModeButton />
+        </ContentProvider>
       </body>
     </html>
   );

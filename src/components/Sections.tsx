@@ -18,6 +18,7 @@ import {
 import { MetallicOrb, GoldBar, EmeraldGem } from "./MaterialOrb";
 import { Confetti } from "./Confetti";
 import { CaseBubbles } from "./CaseBubbles";
+import { useContent } from "@/content/ContentContext";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sprout,
@@ -37,46 +38,31 @@ import {
 
 /* ---------- 2. ORIGEM ---------- */
 export function Origin() {
+  const { content } = useContent();
+  const c = content.origin;
   return (
     <Section id="origem" tone="black" panel className="z-10 -mt-[85vh]">
       <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <Reveal>
-            <Eyebrow>Quem Somos</Eyebrow>
+            <Eyebrow>{content.origin.eyebrow}</Eyebrow>
             <h2 className="text-3xl sm:text-5xl text-cream max-w-xl">
-              A Green Hub não nasceu de uma oportunidade.{" "}
-              <span className="text-gradient-gold font-semibold">
-                Nasceu de uma indignação.
-              </span>
+              {c.headingPlain}{" "}
+              <span className="text-gradient-gold font-semibold">{c.headingGold}</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.1} className="mt-8 max-w-xl space-y-5 text-cream/80 leading-relaxed">
-            <p>
-              Trabalhando nos grandes players do mercado de marketing digital, Victor Hugo e
-              Victor Caixeta viram de perto o que acontecia depois que o contrato era assinado: o
-              acompanhamento sumia, o relatório chegava cheio de números que não significavam
-              nada e ninguém assumia responsabilidade quando o resultado não vinha. Foi aí que
-              ficou claro: o mercado não precisava de mais uma agência. Precisava de um parceiro
-              de verdade.
-            </p>
-            <p>
-              Victor Hugo trouxe tecnologia, automação e crescimento comercial — mais de 100
-              projetos implementados, mais de 100 empresas impactadas, trajetória construída com
-              disciplina e obsessão por execução. Victor Caixeta trouxe performance e escala —
-              mais de R$ 5,3 milhões gerenciados em anúncios pagos em grandes players como Blue
-              Ocean e Alpha Assessoria.
-            </p>
+            <p>{c.paragraph1}</p>
+            <p>{c.paragraph2}</p>
             <p className="text-cream/90">
-              Porque pra nós, cada cliente não é um contrato.{" "}
-              <span className="font-semibold text-mint">
-                É mais um sócio que entrou — e que precisa de resultado.
-              </span>
+              {c.paragraph3Plain}{" "}
+              <span className="font-semibold text-mint">{c.paragraph3Bold}</span>
             </p>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <Kicker>&ldquo;Não acreditamos em promessas. Acreditamos em resultados.&rdquo;</Kicker>
+            <Kicker>{c.kicker}</Kicker>
           </Reveal>
         </div>
 
@@ -91,10 +77,8 @@ export function Origin() {
                 className="h-auto w-full"
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-5 py-4">
-                <p className="text-sm font-semibold text-cream">
-                  Victor Hugo &amp; Victor Caixeta
-                </p>
-                <p className="text-xs text-cream/70">Sócios-fundadores · Green Hub</p>
+                <p className="text-sm font-semibold text-cream">{c.photoCaptionName}</p>
+                <p className="text-xs text-cream/70">{c.photoCaptionRole}</p>
               </div>
             </div>
           </Float>
@@ -106,23 +90,15 @@ export function Origin() {
 
 /* ---------- 3. PROBLEMA ---------- */
 export function Problem() {
-  const items = [
-    "Anúncio certo para o paciente certo",
-    "Conteúdo que posiciona e atrai organicamente",
-    "Processo que converte lead em paciente agendado",
-    "Dados que mostram o que está funcionando e o que precisa melhorar",
-  ];
+  const { content } = useContent();
+  const c = content.problem;
+  const items = c.items;
   return (
     <Section id="problema" dark transition="slideRight">
       <SlideReveal direction="right">
-        <Eyebrow>O Problema Real</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Marketing que gera resultado vai muito além de anúncio.
-        </h2>
-        <p className="mt-6 max-w-2xl text-cream/80 leading-relaxed">
-          Tráfego pago é parte da estratégia — e uma parte poderosa. Mas resultado de verdade vem
-          de um sistema completo funcionando junto:
-        </p>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">{c.heading}</h2>
+        <p className="mt-6 max-w-2xl text-cream/80 leading-relaxed">{c.intro}</p>
       </SlideReveal>
 
       <RevealStagger className="mt-10 grid sm:grid-cols-2 gap-4">
@@ -140,15 +116,11 @@ export function Problem() {
 
       <Reveal delay={0.1}>
         <p className="mt-12 max-w-2xl text-cream/90">
-          A Green Hub entrega tudo isso integrado.
+          {c.closingPlain}
           <br />
-          <span className="font-semibold text-xl text-gradient-gold">
-            Não uma peça isolada — um sistema completo.
-          </span>
+          <span className="font-semibold text-xl text-gradient-gold">{c.closingGold}</span>
         </p>
-        <Kicker>
-          Quanto mais estruturado o sistema, menor o custo para atrair cada novo paciente.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
@@ -156,24 +128,19 @@ export function Problem() {
 
 /* ---------- 4. NOSSA DIFERENÇA ---------- */
 export function Difference() {
-  const questions = [
-    "De onde vêm seus pacientes hoje?",
-    "Por que eles saem sem fechar?",
-    "O que está travando o crescimento?",
-    "Qual procedimento tem maior ticket e menor custo de aquisição?",
-  ];
+  const { content } = useContent();
+  const c = content.difference;
+  const questions = c.questions;
   return (
     <Section id="diferenca" transition="slideLeft">
       <SlideReveal direction="left">
-        <Eyebrow>Nossa Diferença</Eyebrow>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
         <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Não somos agência de tráfego.
+          {c.headingPlain}
           <br />
-          <span className="text-gradient-gold font-semibold">Somos um hub de soluções para clínicas.</span>
+          <span className="text-gradient-gold font-semibold">{c.headingGold}</span>
         </h2>
-        <p className="mt-6 max-w-2xl text-cream/80">
-          Antes de qualquer campanha, fazemos um diagnóstico real:
-        </p>
+        <p className="mt-6 max-w-2xl text-cream/80">{c.intro}</p>
       </SlideReveal>
 
       <RevealStagger className="mt-8 space-y-3 max-w-xl">
@@ -189,64 +156,36 @@ export function Difference() {
       </RevealStagger>
 
       <Reveal delay={0.1} className="mt-12 max-w-2xl space-y-4 text-cream/85">
+        <p>{c.paragraph1}</p>
         <p>
-          A partir disso, montamos uma estratégia personalizada — porque cada clínica é única e
-          nenhuma solução pronta funciona para todo mundo.
-        </p>
-        <p>
-          O tráfego pago é uma ferramenta.
+          {c.paragraph2Plain}
           <br />
-          <span className="font-semibold text-mint text-xl">
-            A estratégia é o que faz funcionar.
-          </span>
+          <span className="font-semibold text-mint text-xl">{c.paragraph2Bold}</span>
         </p>
-        <Kicker>
-          Nada é feito sem estratégia. Nada é entregue sem acompanhamento.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
 }
 
 /* ---------- 5. MÉTODO FLORESTA ---------- */
-const forestSteps = [
-  {
-    Icon: IconSemente,
-    title: "Semente",
-    text: "Criamos a oferta certa para o mercado da sua clínica. O que comunicar, para quem, em qual canal.",
-    particle: "sand" as ParticleType,
-  },
-  {
-    Icon: IconSolo,
-    title: "Solo",
-    text: "Geramos demanda qualificada — orgânica e paga. Não entregamos lead. Entregamos intenção de compra.",
-    particle: "light" as ParticleType,
-  },
-  {
-    Icon: IconCultivo,
-    title: "Cultivo",
-    text: "Treinamos seu comercial para fechar tratamentos de alto ticket. O segredo que a maioria das agências ignora.",
-    particle: "water" as ParticleType,
-  },
-  {
-    Icon: IconColheita,
-    title: "Colheita",
-    text: "Escala previsível. Agenda cheia. Lucro no bolso.",
-    particle: "money" as ParticleType,
-  },
-  {
-    Icon: IconFloresta,
-    title: "Floresta",
-    text: "LTV, indicação e o consultório que vira um negócio de verdade.",
-    particle: "leaf" as ParticleType,
-  },
+const forestMeta = [
+  { Icon: IconSemente, particle: "sand" as ParticleType },
+  { Icon: IconSolo, particle: "light" as ParticleType },
+  { Icon: IconCultivo, particle: "water" as ParticleType },
+  { Icon: IconColheita, particle: "money" as ParticleType },
+  { Icon: IconFloresta, particle: "leaf" as ParticleType },
 ];
 
 function ForestCard({
-  step,
+  meta,
+  title,
+  text,
   index,
 }: {
-  step: (typeof forestSteps)[number];
+  meta: (typeof forestMeta)[number];
+  title: string;
+  text: string;
   index: number;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -258,93 +197,52 @@ function ForestCard({
       onMouseLeave={() => setHovered(false)}
       className="group relative overflow-hidden rounded-2xl border border-mint/15 metallic-surface p-6 transition-colors hover:border-gold/50"
     >
-      <ParticleEffect active={hovered} type={step.particle} />
+      <ParticleEffect active={hovered} type={meta.particle} />
       <span className="absolute right-4 top-4 font-display text-3xl text-mint/15">
         {String(index + 1).padStart(2, "0")}
       </span>
       <Float distance={6} duration={3.5} delay={index * 0.2} className="mb-4 w-fit">
-        <step.Icon className="h-14 w-14 drop-shadow-[0_0_12px_rgba(143,230,184,0.5)]" />
+        <meta.Icon className="h-14 w-14 drop-shadow-[0_0_12px_rgba(143,230,184,0.5)]" />
       </Float>
-      <p className="font-display text-xl text-cream mb-2">{step.title}</p>
-      <p className="text-sm text-cream/70 leading-relaxed">{step.text}</p>
+      <p className="font-display text-xl text-cream mb-2">{title}</p>
+      <p className="text-sm text-cream/70 leading-relaxed">{text}</p>
     </motion.div>
   );
 }
 
 export function ForestMethod() {
+  const { content } = useContent();
+  const c = content.forest;
   return (
     <Section id="metodo" dark transition="zoomOut">
       <Reveal>
-        <Eyebrow>Método Floresta</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Negócios crescem com uma floresta bem cultivada.
-        </h2>
-        <p className="mt-3 text-sm text-cream/50">
-          Passe o mouse sobre cada etapa e veja o método em ação.
-        </p>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">{c.heading}</h2>
+        <p className="mt-3 text-sm text-cream/50">{c.hint}</p>
       </Reveal>
 
       <RevealStagger className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-        {forestSteps.map((step, i) => (
-          <ForestCard key={step.title} step={step} index={i} />
+        {c.steps.map((step, i) => (
+          <ForestCard key={step.title} meta={forestMeta[i]} title={step.title} text={step.text} index={i} />
         ))}
       </RevealStagger>
 
       <Reveal delay={0.15}>
-        <Kicker>
-          O tráfego é apenas o Solo. Sem Semente, Cultivo e Colheita — não brota nada.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
 }
 
 /* ---------- 6. TIME COMPLETO ---------- */
-const team = [
-  {
-    icon: Megaphone,
-    title: "Gestão de Tráfego",
-    text: "Meta Ads e Google Ads — anúncios em vídeo, imagem e stories direcionados para quem já tem interesse no tratamento da sua clínica.",
-    featured: true,
-    visual: "trafego" as const,
-  },
-  {
-    icon: MonitorSmartphone,
-    title: "CRM Green Hub",
-    text: "Sistema próprio da Green Hub para gestão completa dos leads e do funil de vendas — ROI e resultados em tempo real.",
-    featured: true,
-    visual: "crm" as const,
-  },
-  {
-    icon: PenLine,
-    title: "Copywriter",
-    text: "Textos estratégicos para anúncios, landing pages e WhatsApp — cada palavra pensada para gerar ação.",
-    visual: "copy" as const,
-  },
-  {
-    icon: Clapperboard,
-    title: "Designer + Editor de Vídeo",
-    text: "Artes para feed, stories e carrossel + vídeos de autoridade, depoimento e Reels educativos.",
-    visual: "video" as const,
-  },
-  {
-    icon: LineChart,
-    title: "Consultor Comercial",
-    text: "Acompanhamento semanal do funil — do lead até o agendamento.",
-    visual: "funnel" as const,
-  },
-  {
-    icon: Smartphone,
-    title: "CRC — Central de Relacionamento",
-    text: "Profissional dedicado a atender, qualificar e agendar os leads direto na agenda da clínica.",
-    visual: "chat" as const,
-  },
-  {
-    icon: ClipboardList,
-    title: "Script de Atendimento Green Hub",
-    text: "Roteiro validado para WhatsApp e telefone — sua equipe atende com mais segurança e converte mais.",
-    visual: "checklist" as const,
-  },
+const teamMeta = [
+  { icon: Megaphone, featured: true, visual: "trafego" as const },
+  { icon: MonitorSmartphone, featured: true, visual: "crm" as const },
+  { icon: PenLine, visual: "copy" as const },
+  { icon: Clapperboard, visual: "video" as const },
+  { icon: LineChart, visual: "funnel" as const },
+  { icon: Smartphone, visual: "chat" as const },
+  { icon: ClipboardList, visual: "checklist" as const },
 ];
 
 type VisualType = "trafego" | "crm" | "copy" | "video" | "funnel" | "chat" | "checklist";
@@ -477,39 +375,39 @@ function TeamVisual({ type }: { type: VisualType }) {
 }
 
 export function Team() {
+  const { content } = useContent();
+  const c = content.team;
   return (
     <Section id="time" transition="zoomIn">
       <Reveal>
-        <Eyebrow>O Time Completo</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">
-          Um time inteiro, especializado em clínicas.
-        </h2>
-        <p className="mt-4 max-w-xl text-cream/70 leading-relaxed">
-          Tecnologia de ponta + gente especialista. Não é freelancer avulso — é uma estrutura
-          completa rodando pela sua clínica todos os dias.
-        </p>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">{c.heading}</h2>
+        <p className="mt-4 max-w-xl text-cream/70 leading-relaxed">{c.intro}</p>
       </Reveal>
 
       <RevealStagger className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {team.map((member, index) => (
-          <motion.div
-            key={member.title}
-            variants={staggerItem}
-            whileHover={{ y: -4, borderColor: "rgba(200,168,75,0.5)" }}
-            className={`rounded-2xl border p-6 ${
-              member.featured
-                ? "sm:col-span-2 lg:col-span-1 border-gold/25 bg-gradient-to-b from-gold/10 to-white/[0.02]"
-                : "border-mint/15 bg-white/[0.03]"
-            }`}
-          >
-            {member.visual && <TeamVisual type={member.visual} />}
-            <Float distance={5} duration={3.2} delay={index * 0.15}>
-              <member.icon className="h-6 w-6 text-gold mb-4" />
-            </Float>
-            <p className="font-display text-lg text-cream mb-2">{member.title}</p>
-            <p className="text-sm text-cream/70 leading-relaxed">{member.text}</p>
-          </motion.div>
-        ))}
+        {c.services.map((svc, index) => {
+          const meta = teamMeta[index];
+          return (
+            <motion.div
+              key={svc.title}
+              variants={staggerItem}
+              whileHover={{ y: -4, borderColor: "rgba(200,168,75,0.5)" }}
+              className={`rounded-2xl border p-6 ${
+                meta.featured
+                  ? "sm:col-span-2 lg:col-span-1 border-gold/25 bg-gradient-to-b from-gold/10 to-white/[0.02]"
+                  : "border-mint/15 bg-white/[0.03]"
+              }`}
+            >
+              {meta.visual && <TeamVisual type={meta.visual} />}
+              <Float distance={5} duration={3.2} delay={index * 0.15}>
+                <meta.icon className="h-6 w-6 text-gold mb-4" />
+              </Float>
+              <p className="font-display text-lg text-cream mb-2">{svc.title}</p>
+              <p className="text-sm text-cream/70 leading-relaxed">{svc.text}</p>
+            </motion.div>
+          );
+        })}
       </RevealStagger>
     </Section>
   );
@@ -551,77 +449,49 @@ function CostTable({
 }
 
 export function AnchorTeam() {
+  const { content } = useContent();
+  const c = content.anchorTeam;
   return (
     <Section id="ancoragem-time" dark transition="suction">
       <Reveal>
-        <Eyebrow>Quanto Custaria Montar Esse Time?</Eyebrow>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
         <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Ter essa estrutura por conta própria custaria mais de{" "}
-          <span className="text-gradient-gold font-semibold">R$ 23.000,00</span> por mês.
+          {c.headingPlain}{" "}
+          <span className="text-gradient-gold font-semibold">{c.headingGold}</span> {c.headingEnd}
         </h2>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <CostTable
-          rows={[
-            { label: "Designer Gráfico", value: "R$ 4.500/mês" },
-            { label: "Gestor de Tráfego", value: "R$ 5.500/mês" },
-            { label: "Copywriter", value: "R$ 4.000/mês" },
-            { label: "Consultor Comercial", value: "R$ 6.000/mês" },
-            { label: "Editor de Vídeo", value: "R$ 3.200/mês" },
-            { label: "CRM", value: "R$ 499/mês" },
-            { label: "Script de Atendimento", value: "R$ 200/mês" },
-          ]}
-          total={{ label: "Total", value: "R$ 23.899/mês" }}
-          highlight
-        />
+        <CostTable rows={c.rows} total={c.total} highlight />
       </Reveal>
 
       <Reveal delay={0.2}>
-        <Kicker>
-          Com a Green Hub, você tem tudo isso — especializado em clínicas — por uma fração disso.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
 }
 
 export function AnchorSecretary() {
+  const { content } = useContent();
+  const c = content.anchorSecretary;
   return (
     <Section id="ancoragem-secretaria" transition="slideLeft">
       <Reveal>
-        <Eyebrow>O Custo Real da Sua Secretária</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Quanto custa manter quem atende seus leads hoje?
-        </h2>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">{c.heading}</h2>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <CostTable
-          rows={[
-            { label: "Salário base", value: "R$ 2.200 – R$ 3.500/mês" },
-            { label: "Encargos CLT (FGTS, INSS, férias, 13º)", value: "+68% sobre o salário" },
-            { label: "Dias de atestado e falta", value: "Você paga — sem retorno" },
-            { label: "Treinamento comercial para vendas", value: "Raramente acontece" },
-            { label: "Disponibilidade fora do horário", value: "Zero" },
-            { label: "Qualificar lead e fechar tratamento", value: "Quase nunca" },
-          ]}
-          total={{ label: "Custo real total", value: "R$ 3.700 – R$ 5.900/mês" }}
-        />
+        <CostTable rows={c.rows} total={c.total} />
       </Reveal>
 
       <Reveal delay={0.2} className="mt-10 max-w-2xl space-y-2 text-cream/85">
         <p>E com tudo isso:</p>
-        <p className="font-semibold text-lg text-mint">
-          Ela não foi treinada para vender implante.
-        </p>
-        <p className="font-semibold text-lg text-mint">
-          Não entende de urgência comercial.
-        </p>
-        <p className="font-semibold text-lg text-mint">
-          Não qualifica lead — ocupa agenda com quem não vai fechar.
-        </p>
-        <Kicker>O CRC da Green Hub foi criado para resolver exatamente isso.</Kicker>
+        <p className="font-semibold text-lg text-mint">{c.line1}</p>
+        <p className="font-semibold text-lg text-mint">{c.line2}</p>
+        <p className="font-semibold text-lg text-mint">{c.line3}</p>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
@@ -629,26 +499,19 @@ export function AnchorSecretary() {
 
 /* ---------- 9. CRC ---------- */
 export function CRC() {
-  const bullets = [
-    "Treinado exclusivamente para atender leads de clínica",
-    "Qualifica o paciente antes de ocupar sua agenda",
-    "Agenda direto no sistema da clínica",
-    "Scripts validados para WhatsApp e telefone",
-    "Sem interrupção da sua operação",
-  ];
+  const { content } = useContent();
+  const c = content.crc;
+  const bullets = c.bullets;
   return (
     <Section id="crc" dark transition="slideRight">
       <SlideReveal direction="right">
-        <Eyebrow>O CRC</Eyebrow>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
         <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">
-          O CRC é o profissional que cuida dos seus leads.
+          {c.headingPlain}
           <br />
-          <span className="text-gradient-gold font-semibold">Para que você cuide dos seus pacientes.</span>
+          <span className="text-gradient-gold font-semibold">{c.headingGold}</span>
         </h2>
-        <p className="mt-6 max-w-2xl text-cream/80 leading-relaxed">
-          Enquanto você foca nos procedimentos, o CRC garante que nenhum lead fique sem resposta,
-          sem qualificação e sem agendamento.
-        </p>
+        <p className="mt-6 max-w-2xl text-cream/80 leading-relaxed">{c.intro}</p>
       </SlideReveal>
 
       <RevealStagger className="mt-10 grid sm:grid-cols-2 gap-4 max-w-3xl">
@@ -665,9 +528,7 @@ export function CRC() {
       </RevealStagger>
 
       <Reveal delay={0.1}>
-        <Kicker>
-          Isso não é secretária. É o seu time comercial funcionando enquanto você atende.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
@@ -675,17 +536,14 @@ export function CRC() {
 
 /* ---------- 10. CASES ---------- */
 export function Cases() {
+  const { content } = useContent();
+  const c = content.results;
   return (
     <Section id="resultados" transition="zoomOut">
       <Reveal>
-        <Eyebrow>Resultados</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">
-          Resultado real, em negócios reais.
-        </h2>
-        <p className="mt-4 max-w-xl text-cream/70 leading-relaxed">
-          Dezenas de clientes já tomaram a decisão de ser Green. A única pergunta que falta
-          responder é: o que está fazendo o seu negócio esperar?
-        </p>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">{c.heading}</h2>
+        <p className="mt-4 max-w-xl text-cream/70 leading-relaxed">{c.intro}</p>
       </Reveal>
 
       <Reveal delay={0.1}>
@@ -696,146 +554,133 @@ export function Cases() {
 }
 
 /* ---------- 11 & 12. PLANOS + DESCONTO TCV (oculto até clique, valor por mês) ---------- */
-function brl(n: number) {
-  return `R$ ${n.toLocaleString("pt-BR")}`;
+function brl(n: string | number) {
+  return `R$ ${Number(n).toLocaleString("pt-BR")}`;
 }
 
-const plans = [
+const planMeta = [
   {
-    name: "START",
     Material: () => <Sprout className="h-9 w-9 text-mint" strokeWidth={1.5} />,
     accent: "text-mint",
     cardBg: "bg-black",
     cardBorder: "border-white/10",
-    price: "R$ 1.500/mês",
-    items: ["Tráfego", "Design", "Vídeo", "Copy", "Consultor Comercial"],
-    monthly: { m3: 1200, m6: 1125, m12: 1050 },
   },
   {
-    name: "PRATA",
     Material: () => <MetallicOrb size={48} tone="silver" />,
     accent: "text-silver-green",
     cardBg: "bg-gradient-to-b from-silver-green/20 via-[#0c2117] to-[#0c2117]",
     cardBorder: "border-silver-green/30",
-    price: "R$ 2.000/mês",
-    items: ["Tudo do Start", "+ CRM"],
-    monthly: { m3: 1600, m6: 1500, m12: 1400 },
   },
   {
-    name: "GOLD",
     Material: () => <GoldBar size={52} />,
     accent: "text-gold",
     cardBg: "bg-gradient-to-b from-gold/40 via-gold/10 to-[#0c2117]",
     cardBorder: "border-gold",
-    price: "R$ 3.000/mês",
-    items: ["Tudo do Prata", "+ CRC"],
-    monthly: { m3: 2400, m6: 2250, m12: 2100 },
     featured: true,
   },
   {
-    name: "ESMERALDA",
     Material: () => <EmeraldGem size={48} />,
     accent: "text-mint",
     cardBg: "bg-gradient-to-b from-[#1fae6b]/30 via-[#0c2117] to-[#0c2117]",
     cardBorder: "border-[#1fae6b]/40",
-    price: "R$ 4.500/mês",
-    items: ["Tudo do Gold", "+ Social Mídia", "+ Estratégia Orgânica"],
-    monthly: { m3: 3600, m6: 3375, m12: 3150 },
   },
 ];
 
 export function Plans() {
+  const { content } = useContent();
+  const c = content.plans;
   const [unlocked, setUnlocked] = useState(false);
 
   return (
     <Section id="planos" tone="black" panel className="perspective-1200">
       <Reveal>
-        <Eyebrow>Planos</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">
-          Escolha o nível de crescimento certo para sua clínica.
-        </h2>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-2xl">{c.heading}</h2>
       </Reveal>
 
       <RevealStagger className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5 items-start">
-        {plans.map((plan) => (
-          <motion.div
-            key={plan.name}
-            variants={staggerItem}
-            className={plan.featured ? "lg:-mt-4 lg:scale-[1.06]" : ""}
-          >
-            <Tilt3D
-              className={`rounded-2xl border glass-3d p-6 flex flex-col h-full ${plan.cardBorder} ${plan.cardBg} ${
-                plan.featured ? "shadow-[0_0_50px_-10px_rgba(232,196,104,0.55)]" : ""
-              }`}
+        {c.items.map((plan, i) => {
+          const meta = planMeta[i];
+          return (
+            <motion.div
+              key={plan.name}
+              variants={staggerItem}
+              className={meta.featured ? "lg:-mt-4 lg:scale-[1.06]" : ""}
             >
-              {plan.featured && (
-                <span
-                  style={{ borderRadius: 9999 }}
-                  className="absolute -top-3 right-4 bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-forest"
-                >
-                  Mais vendido
-                </span>
-              )}
-              <Float distance={6} duration={3.6} className="w-fit mb-4">
-                <plan.Material />
-              </Float>
-              <p className="font-display text-2xl text-cream mb-1">{plan.name}</p>
-              <p className={`font-display text-lg mb-5 ${plan.featured ? "text-gradient-gold" : plan.accent}`}>
-                {plan.price}
-              </p>
-              <ul className="space-y-2 text-sm text-cream/75 flex-1">
-                {plan.items.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 mt-0.5 flex-shrink-0 text-mint" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-5 border-t border-white/10 pt-4">
-                <p className="text-[11px] uppercase tracking-wide text-cream/40 mb-2">
-                  Fidelidade — equivalente por mês
+              <Tilt3D
+                className={`rounded-2xl border glass-3d p-6 flex flex-col h-full ${meta.cardBorder} ${meta.cardBg} ${
+                  meta.featured ? "shadow-[0_0_50px_-10px_rgba(232,196,104,0.55)]" : ""
+                }`}
+              >
+                {meta.featured && (
+                  <span
+                    style={{ borderRadius: 9999 }}
+                    className="absolute -top-3 right-4 bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-forest"
+                  >
+                    Mais vendido
+                  </span>
+                )}
+                <Float distance={6} duration={3.6} className="w-fit mb-4">
+                  <meta.Material />
+                </Float>
+                <p className="font-display text-2xl text-cream mb-1">{plan.name}</p>
+                <p className={`font-display text-lg mb-5 ${meta.featured ? "text-gradient-gold" : meta.accent}`}>
+                  {plan.price}
                 </p>
-                <AnimatePresence mode="wait">
-                  {unlocked ? (
-                    <motion.div
-                      key="open"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35 }}
-                      className="space-y-1.5 text-sm overflow-hidden"
-                    >
-                      <div className="flex justify-between text-cream/70">
-                        <span>3 meses</span>
-                        <span className="text-cream">{brl(plan.monthly.m3)}/mês</span>
-                      </div>
-                      <div className="flex justify-between text-cream/70">
-                        <span>6 meses</span>
-                        <span className="text-cream">{brl(plan.monthly.m6)}/mês</span>
-                      </div>
-                      <div className="flex justify-between font-semibold">
-                        <span className="text-cream/70">12 meses</span>
-                        <span className="text-gradient-gold">{brl(plan.monthly.m12)}/mês</span>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="closed"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="flex select-none items-center gap-1 text-sm text-cream/35"
-                    >
-                      <span>3m R$ ••••/mês</span>
-                      <span>· 12m R$ ••••/mês</span>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </Tilt3D>
-          </motion.div>
-        ))}
+                <ul className="space-y-2 text-sm text-cream/75 flex-1">
+                  {plan.features.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 flex-shrink-0 text-mint" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 border-t border-white/10 pt-4">
+                  <p className="text-[11px] uppercase tracking-wide text-cream/40 mb-2">
+                    {c.fidelityLabel}
+                  </p>
+                  <AnimatePresence mode="wait">
+                    {unlocked ? (
+                      <motion.div
+                        key="open"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.35 }}
+                        className="space-y-1.5 text-sm overflow-hidden"
+                      >
+                        <div className="flex justify-between text-cream/70">
+                          <span>3 meses</span>
+                          <span className="text-cream">{brl(plan.monthly3)}/mês</span>
+                        </div>
+                        <div className="flex justify-between text-cream/70">
+                          <span>6 meses</span>
+                          <span className="text-cream">{brl(plan.monthly6)}/mês</span>
+                        </div>
+                        <div className="flex justify-between font-semibold">
+                          <span className="text-cream/70">12 meses</span>
+                          <span className="text-gradient-gold">{brl(plan.monthly12)}/mês</span>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="closed"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="flex select-none items-center gap-1 text-sm text-cream/35"
+                      >
+                        <span>3m R$ ••••/mês</span>
+                        <span>· 12m R$ ••••/mês</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </Tilt3D>
+            </motion.div>
+          );
+        })}
       </RevealStagger>
 
       <Reveal delay={0.15} className="mt-10 flex flex-col items-center gap-4 text-center">
@@ -846,39 +691,29 @@ export function Plans() {
           className="group inline-flex items-center gap-2 appearance-none border border-gold/50 bg-gold/10 px-6 py-3 font-semibold text-gold transition-colors hover:bg-gold/20"
         >
           {unlocked ? <Unlock className="h-4 w-4" /> : <Lock className="h-4 w-4" />}
-          {unlocked ? "Ocultar condições especiais" : "Desbloquear condições especiais (3/6/12 meses)"}
+          {unlocked ? c.lockLabel : c.unlockLabel}
         </button>
-        <Kicker>
-          Todos os planos seguem o mesmo método. A diferença é a estrutura que acompanha você.
-        </Kicker>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
 }
 
 /* ---------- 13. ONBOARDING ---------- */
-const onboarding = [
-  { day: "Dia 1", text: "Reunião Welcome + Diagnóstico" },
-  { day: "Dia 2", text: "Planejamento estratégico + Direcionamento de copy" },
-  { day: "Dias 3–7", text: "Produção de criativos" },
-  { day: "Dia 8", text: "Kick-off das campanhas" },
-  { day: "Dias 9–10", text: "Ativação da estrutura completa" },
-];
-
 export function Onboarding() {
+  const { content } = useContent();
+  const c = content.onboarding;
   return (
     <Section id="onboarding" tone="black" transition="zoomIn">
       <Reveal>
-        <Eyebrow>Onboarding</Eyebrow>
-        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
-          Do contrato assinado ao primeiro paciente agendado em 10 dias.
-        </h2>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">{c.heading}</h2>
       </Reveal>
 
       <RevealStagger className="mt-14 relative">
         <div className="absolute left-[14px] sm:left-1/2 top-2 bottom-2 w-px bg-mint/20 sm:-translate-x-1/2" />
         <div className="space-y-8">
-          {onboarding.map((step, i) => (
+          {c.steps.map((step, i) => (
             <motion.div
               key={step.day}
               variants={staggerItem}
@@ -899,14 +734,10 @@ export function Onboarding() {
       </RevealStagger>
 
       <Reveal delay={0.2} className="mt-14 max-w-2xl space-y-2 text-cream/85">
-        <p>Otimização contínua a partir do Dia 9.</p>
-        <p className="font-semibold text-mint">
-          Nenhuma campanha sobe sem estratégia aprovada.
-        </p>
-        <p className="font-semibold text-mint">
-          Nenhum resultado é reportado sem dado real.
-        </p>
-        <Kicker>Processo acompanhado de perto, do primeiro dia em diante.</Kicker>
+        <p>{c.line1}</p>
+        <p className="font-semibold text-mint">{c.line2}</p>
+        <p className="font-semibold text-mint">{c.line3}</p>
+        <Kicker>{c.kicker}</Kicker>
       </Reveal>
     </Section>
   );
@@ -914,6 +745,8 @@ export function Onboarding() {
 
 /* ---------- 14. FECHAMENTO ---------- */
 export function Closing() {
+  const { content } = useContent();
+  const c = content.closing;
   return (
     <SlideUpPanel>
       <section
@@ -929,12 +762,13 @@ export function Closing() {
         />
         <Reveal className="relative z-10">
           <h2 className="text-5xl sm:text-7xl text-forest drop-shadow-sm">
-            Eai, <span className="font-semibold">Deu Green?</span>
+            {c.titlePlain}
+            <span className="font-semibold">{c.titleGold}</span>
           </h2>
           <p className="mt-8 text-xl sm:text-2xl text-forest/90 font-display">
-            A agenda cheia não é sorte.
+            {c.line1}
             <br />
-            <span className="font-semibold">É sistema.</span>
+            <span className="font-semibold">{c.line2}</span>
           </p>
         </Reveal>
       </section>
@@ -943,14 +777,9 @@ export function Closing() {
 }
 
 /* ---------- 15. GREEN CLUB ---------- */
-const rewards = [
-  { label: "Indicou 5 — nenhum fechou", value: "Desconto garantido na mensalidade" },
-  { label: "1 fechou", value: "50% de desconto" },
-  { label: "2 fecharam", value: "Mensalidade 100% gratuita" },
-  { label: "3 ou mais fecharam", value: "Serviço adicional ou premiação exclusiva" },
-];
-
 export function GreenClub() {
+  const { content } = useContent();
+  const c = content.greenClub;
   return (
     <Section id="green-club" tone="vivid-gold" transition="zoomIn" className="relative">
       <Confetti />
@@ -960,25 +789,16 @@ export function GreenClub() {
             <PartyPopper className="h-8 w-8 text-forest" />
           </Float>
           <p className="font-body text-xs sm:text-sm uppercase tracking-[0.25em] text-forest/70">
-            Green Club
+            {c.eyebrow}
           </p>
         </div>
-        <h2 className="text-3xl sm:text-5xl text-forest max-w-3xl">
-          Programa de Indicação Green Hub
-        </h2>
-        <p className="mt-6 max-w-2xl text-forest/85 leading-relaxed">
-          Agora que você é nosso parceiro, você entra automaticamente no Green Club. Indica 5
-          contatos — doutores, donos de clínica ou qualquer empresário que sofre com os mesmos
-          problemas que você tinha: agenda imprevisível, dependência total de indicação, falta de
-          demanda constante, faturamento sem previsibilidade.
-        </p>
-        <p className="mt-4 max-w-2xl text-forest font-semibold">
-          Se conhece alguém assim — essa indicação vale dinheiro real no seu bolso.
-        </p>
+        <h2 className="text-3xl sm:text-5xl text-forest max-w-3xl">{c.heading}</h2>
+        <p className="mt-6 max-w-2xl text-forest/85 leading-relaxed">{c.paragraph1}</p>
+        <p className="mt-4 max-w-2xl text-forest font-semibold">{c.paragraph2}</p>
       </SlideReveal>
 
       <RevealStagger className="mt-10 grid sm:grid-cols-2 gap-4">
-        {rewards.map((r, i) => (
+        {c.rewards.map((r, i) => (
           <motion.div
             key={r.label}
             variants={staggerItem}
@@ -996,7 +816,7 @@ export function GreenClub() {
 
       <Reveal delay={0.15}>
         <p className="font-body font-semibold text-lg sm:text-xl mt-6 leading-relaxed text-forest">
-          Quem indica, cresce junto.
+          {c.kicker}
         </p>
       </Reveal>
     </Section>
