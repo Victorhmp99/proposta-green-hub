@@ -624,6 +624,9 @@ export function Plans() {
                   <meta.Material />
                 </Float>
                 <p className="font-display text-2xl text-cream mb-1">{plan.name}</p>
+                {plan.description && (
+                  <p className="text-xs italic text-cream/55 mb-3 leading-snug">{plan.description}</p>
+                )}
                 <p className={`font-display text-lg mb-5 ${meta.featured ? "text-gradient-gold" : meta.accent}`}>
                   {plan.price}
                 </p>

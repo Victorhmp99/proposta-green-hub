@@ -168,7 +168,24 @@ export function EditorPanel({ onClose }: { onClose: () => void }) {
             <Field label="Título" value={d.plans.heading} onChange={(v) => patch("plans", { ...d.plans, heading: v })} />
             {d.plans.items.map((plan, i) => (
               <div key={i} className="mb-3 rounded-md border border-gold/25 p-3">
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-gold">{plan.name}</p>
+                <Field
+                  label="Nome do plano"
+                  value={plan.name}
+                  onChange={(v) => {
+                    const items = [...d.plans.items];
+                    items[i] = { ...items[i], name: v };
+                    patch("plans", { ...d.plans, items });
+                  }}
+                />
+                <Field
+                  label="Descrição curta"
+                  value={plan.description}
+                  onChange={(v) => {
+                    const items = [...d.plans.items];
+                    items[i] = { ...items[i], description: v };
+                    patch("plans", { ...d.plans, items });
+                  }}
+                />
                 <Field
                   label="Preço mensal"
                   value={plan.price}
