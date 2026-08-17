@@ -300,8 +300,8 @@ export const defaultContent = {
       {
         label: "Transformação Completa",
         duration: "90 dias",
-        hours: "74h de projeto",
-        description: "Implementação + 2 meses de acompanhamento e ajuste.",
+        hours: "74h de projeto + suporte contínuo",
+        description: "Implementação completa dos 5 módulos + 2 meses de acompanhamento semanal: call toda semana, canal direto para dúvidas, ajustes em tempo real e revisão de indicadores.",
         price: "R$ 50.000",
         featured: true,
       },
