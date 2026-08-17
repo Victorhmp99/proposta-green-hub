@@ -909,7 +909,12 @@ export function CrmResale() {
 
               {/* planos que o revendedor vende */}
               <div className="flex flex-col gap-4">
-                <p className="text-[11px] uppercase tracking-widest text-cream/30">O que você vende para seus clientes</p>
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <p className="text-[11px] uppercase tracking-widest text-cream/30">O que você vende para seus clientes</p>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-mint/30 bg-mint/10 px-3 py-1 text-xs font-bold text-mint">
+                    Comissão Green Hub: 30% do plano
+                  </span>
+                </div>
                 <div className="grid sm:grid-cols-3 gap-4 flex-1">
                   {c.plans.map((plan) => (
                     <div
@@ -940,7 +945,7 @@ export function CrmResale() {
                       </ul>
                       <div className="mt-5 pt-4 border-t border-white/10 space-y-1">
                         <div className="flex justify-between text-xs">
-                          <span className="text-cream/35">Repasse</span>
+                          <span className="text-cream/35">Repasse (30%)</span>
                           <span className="text-cream/60">{plan.repasse}</span>
                         </div>
                         <div className="flex justify-between text-xs">
