@@ -707,42 +707,41 @@ export function EstruturaGreen() {
   const { content } = useContent();
   const c = content.estruturaGreen;
   const [revealed, setRevealed] = useState(false);
-  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <Section id="estrutura-green" tone="forest" panel>
-      {/* trigger button — always visible */}
-      <Reveal className="flex flex-col items-center text-center gap-6 py-4">
-        <p className="text-[11px] uppercase tracking-widest text-mint/50">Estrutura Green</p>
-        <h2 className="text-3xl sm:text-4xl text-cream max-w-2xl leading-snug">
+      {/* header — sempre visível */}
+      <Reveal className="flex flex-col items-center text-center gap-5 py-4">
+        {/* nome em destaque */}
+        <span className="font-display text-5xl sm:text-7xl text-gradient-gold leading-none tracking-tight">
+          Estrutura Green
+        </span>
+        <h2 className="text-xl sm:text-2xl text-cream/80 max-w-xl leading-snug font-normal">
           Para clínicas que querem mudar de patamar —{" "}
-          <span className="text-gradient-gold font-semibold">não só de canal de aquisição.</span>
+          <span className="text-cream font-semibold">não só de canal de aquisição.</span>
         </h2>
-        <p className="text-cream/50 text-sm max-w-md">
-          Reestruturação completa da operação. Comercial, processos, pessoas, posicionamento e indicadores.
+        <p className="text-cream/45 text-sm max-w-sm">
+          Reestruturação completa da operação em até 90 dias.
         </p>
-        {!revealed && (
-          <button
-            type="button"
-            onClick={() => setRevealed(true)}
-            className="mt-2 px-8 py-4 rounded-full bg-gold text-forest font-bold text-sm tracking-wide hover:bg-gold/90 transition shadow-[0_0_40px_-8px_rgba(232,196,104,0.6)]"
-          >
-            Quero Mudar de Nível de Verdade
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => setRevealed((v) => !v)}
+          className="mt-2 px-8 py-4 rounded-full bg-gold text-forest font-bold text-sm tracking-wide hover:bg-gold/90 transition shadow-[0_0_40px_-8px_rgba(232,196,104,0.6)]"
+        >
+          {revealed ? "Ocultar" : "Quero Mudar de Nível de Verdade"}
+        </button>
       </Reveal>
 
-      {/* full content — only after click */}
+      {/* conteúdo revelado */}
       <AnimatePresence>
         {revealed && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
           >
-            <p className="mt-2 max-w-2xl text-cream/70 leading-relaxed">{c.intro}</p>
-
-            {/* before / after */}
+            {/* antes / depois */}
             <div className="mt-12 grid sm:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-white/10">
               <div className="bg-black/40 px-6 py-6 border-b sm:border-b-0 sm:border-r border-white/10">
                 <p className="text-[11px] uppercase tracking-widest text-cream/35 mb-5">Como a clínica chega</p>
@@ -768,98 +767,74 @@ export function EstruturaGreen() {
               </div>
             </div>
 
-            {/* modules */}
-            <div className="mt-16">
-              <p className="text-[11px] uppercase tracking-widest text-cream/35 mb-6">
-                5 módulos · {c.totalHours} de projeto
-              </p>
-              <div className="space-y-3">
-                {c.modules.map((mod, i) => (
-                  <div key={mod.number} className="rounded-xl border border-white/10 bg-black/30 overflow-hidden">
-                    {/* header row — clickable */}
-                    <button
-                      type="button"
-                      onClick={() => setOpen(open === i ? null : i)}
-                      className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 hover:bg-white/5 transition"
-                    >
-                      <div className="flex items-center gap-4">
-                        <span className="font-display text-2xl text-mint/25 leading-none select-none w-8 shrink-0">{mod.number}</span>
-                        <div>
-                          <p className="font-semibold text-cream text-base">{mod.title}</p>
-                          <p className="text-xs text-cream/40 mt-0.5">{mod.hours}h de projeto</p>
-                        </div>
-                      </div>
-                      <motion.span
-                        animate={{ rotate: open === i ? 45 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-cream/30 text-2xl leading-none shrink-0"
-                      >
-                        +
-                      </motion.span>
-                    </button>
-
-                    {/* expandable body — outside the button */}
-                    <AnimatePresence initial={false}>
-                      {open === i && (
-                        <motion.div
-                          key="body"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.28, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6 pt-1 border-t border-white/10">
-                            <ul className="space-y-3 mt-4">
-                              {mod.items.map((item) => (
-                                <li key={item} className="flex items-start gap-3 text-sm text-cream/70">
-                                  <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-mint/60" />
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                            <div className="mt-5 pt-4 border-t border-white/10">
-                              <p className="text-[11px] uppercase tracking-widest text-mint/50 mb-1">Entregáveis</p>
-                              <p className="text-sm text-cream/60">{mod.deliverables}</p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* pricing */}
-            <div className="mt-16 grid sm:grid-cols-2 gap-5">
+            {/* cards de plano com módulos e entregáveis dentro */}
+            <div className="mt-14 grid sm:grid-cols-2 gap-5">
               {c.plans.map((plan) => (
                 <div
                   key={plan.label}
-                  className={`rounded-2xl border p-7 flex flex-col ${
+                  className={`rounded-2xl border flex flex-col ${
                     plan.featured
                       ? "border-gold/50 bg-gold/5 shadow-[0_0_60px_-15px_rgba(232,196,104,0.4)]"
                       : "border-white/10 bg-black/30"
                   }`}
                 >
-                  {plan.featured && (
-                    <span
-                      style={{ borderRadius: 9999 }}
-                      className="inline-block mb-3 w-fit bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-forest"
-                    >
-                      Recomendado
-                    </span>
-                  )}
-                  <p className={`font-display text-xl mb-1 ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
-                    {plan.label}
-                  </p>
-                  <p className="text-xs text-cream/45 mb-4">{plan.duration} · {plan.hours}</p>
-                  <p className="text-sm text-cream/65 leading-relaxed flex-1">{plan.description}</p>
-                  <p className={`mt-6 font-display text-3xl ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
-                    {plan.price}
-                  </p>
+                  {/* topo do card */}
+                  <div className="px-7 pt-7 pb-5 border-b border-white/10">
+                    {plan.featured && (
+                      <span
+                        style={{ borderRadius: 9999 }}
+                        className="inline-block mb-3 w-fit bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-forest"
+                      >
+                        Recomendado
+                      </span>
+                    )}
+                    <p className={`font-display text-2xl mb-1 ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
+                      {plan.label}
+                    </p>
+                    <p className="text-xs text-cream/45 mb-3">{plan.duration} · {plan.hours}</p>
+                    <p className="text-sm text-cream/60 leading-relaxed">{plan.description}</p>
+                    <p className={`mt-5 font-display text-4xl ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
+                      {plan.price}
+                    </p>
+                  </div>
+
+                  {/* módulos e entregáveis */}
+                  <div className="px-7 py-6 flex flex-col gap-5 flex-1">
+                    <p className="text-[11px] uppercase tracking-widest text-cream/30">
+                      {c.totalHours} · 5 módulos incluídos
+                    </p>
+                    {c.modules.map((mod) => (
+                      <div key={mod.number}>
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-[10px] font-bold text-mint/50 w-5 shrink-0">{mod.number}</span>
+                          <p className="text-sm font-semibold text-cream">{mod.title}</p>
+                          <span className="ml-auto text-xs text-cream/30 shrink-0">{mod.hours}h</span>
+                        </div>
+                        <ul className="ml-8 space-y-1.5 mb-2">
+                          {mod.items.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-xs text-cream/55">
+                              <span className="text-mint/50 mt-0.5 shrink-0">–</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="ml-8 text-[11px] text-mint/50 font-medium">{mod.deliverables}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
+            </div>
+
+            {/* botão ocultar inferior */}
+            <div className="mt-10 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setRevealed(false)}
+                className="text-xs text-cream/30 hover:text-cream/60 transition underline underline-offset-4"
+              >
+                Ocultar
+              </button>
             </div>
           </motion.div>
         )}
