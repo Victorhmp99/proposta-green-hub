@@ -308,6 +308,62 @@ export const defaultContent = {
     ],
   },
 
+  crmResale: {
+    eyebrow: "Programa de Revendedores",
+    title: "Revenda o CRM.",
+    subtitle: "Tenha sua própria operação de software — sem desenvolver nada.",
+    intro: "Você vira administrador do sistema, cadastra suas empresas clientes e cobra o que quiser acima do preço mínimo. A estrutura técnica é nossa; o negócio é seu.",
+    license: {
+      label: "Licença de Revendedor",
+      price: "R$ 7.497",
+      priceNote: "pagamento único",
+      limit: "Até 25 empresas ativas",
+      features: [
+        "Painel admin para gerenciar todas as suas empresas",
+        "Cadastro e configuração de cada cliente",
+        "Controle de plano e funções por empresa",
+        "Suporte técnico direto com a Green Hub",
+        "Atualizações do sistema incluídas",
+      ],
+      whiteLabelAddon: {
+        label: "White Label",
+        price: "+ R$ 297/mês",
+        description: "Remova a marca Green Hub e coloque a sua. Seu cliente vê só o seu produto.",
+      },
+    },
+    plans: [
+      {
+        name: "Start",
+        clientPrice: "R$ 149/mês",
+        repasse: "R$ 60/mês",
+        margin: "R$ 89+/mês por cliente",
+        features: ["Automações da pipeline", "Webhook, WhatsApp e etapa de entrada", "Funções ajustáveis por empresa"],
+      },
+      {
+        name: "Standard",
+        clientPrice: "R$ 299/mês",
+        repasse: "R$ 120/mês",
+        margin: "R$ 179+/mês por cliente",
+        features: ["Tudo do Start", "Menu Financeiro", "Menu Relatórios", "Meta Ads"],
+      },
+      {
+        name: "Plus",
+        clientPrice: "R$ 399/mês",
+        repasse: "R$ 180/mês",
+        margin: "R$ 219+/mês por cliente",
+        features: ["Tudo do Standard", "SDR WhatsApp (CRC)", "Prioridade de suporte"],
+        featured: true,
+      },
+    ],
+    minPriceNote: "Preço mínimo de revenda = preços acima. Você pode cobrar mais — a margem é sua.",
+    example: {
+      label: "Exemplo com 10 clientes Plus",
+      revenue: "R$ 3.990/mês",
+      repasse: "R$ 1.800/mês",
+      profit: "R$ 2.190/mês líquido",
+    },
+  },
+
   onboarding: {
     eyebrow: "Onboarding",
     heading: "Do contrato assinado ao primeiro paciente agendado em 10 dias.",

@@ -843,6 +843,154 @@ export function EstruturaGreen() {
   );
 }
 
+/* ---------- 12c. CRM RESALE ---------- */
+export function CrmResale() {
+  const { content } = useContent();
+  const c = content.crmResale;
+  const [revealed, setRevealed] = useState(false);
+
+  return (
+    <Section id="crm-resale" tone="black" panel>
+      {/* header sempre visível */}
+      <Reveal className="flex flex-col items-center text-center gap-5 py-4">
+        <p className="text-[11px] uppercase tracking-widest text-mint/50">{c.eyebrow}</p>
+        <h2 className="font-display text-5xl sm:text-7xl text-cream leading-none tracking-tight">
+          {c.title}
+        </h2>
+        <p className="text-lg sm:text-xl text-gradient-gold font-semibold max-w-lg">{c.subtitle}</p>
+        <p className="text-cream/45 text-sm max-w-sm">{c.intro}</p>
+        <button
+          type="button"
+          onClick={() => setRevealed((v) => !v)}
+          className="mt-2 px-8 py-4 rounded-full border border-mint/40 text-mint font-bold text-sm tracking-wide hover:bg-mint/10 transition"
+        >
+          {revealed ? "Ocultar" : "Quero ser Revendedor"}
+        </button>
+      </Reveal>
+
+      <AnimatePresence>
+        {revealed && (
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="mt-14"
+          >
+            {/* licença + planos lado a lado em telas grandes */}
+            <div className="grid lg:grid-cols-[1fr_2fr] gap-6">
+
+              {/* card de licença */}
+              <div className="rounded-2xl border border-mint/25 bg-black/40 p-7 flex flex-col">
+                <p className="text-[11px] uppercase tracking-widest text-mint/50 mb-3">{c.license.label}</p>
+                <p className="font-display text-4xl text-cream">{c.license.price}</p>
+                <p className="text-xs text-cream/35 mb-6">{c.license.priceNote}</p>
+                <p className="text-xs font-semibold text-mint/70 mb-4 flex items-center gap-2">
+                  <span className="inline-block w-2 h-2 rounded-full bg-mint/50" />
+                  {c.license.limit}
+                </p>
+                <ul className="space-y-3 flex-1">
+                  {c.license.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-cream/65">
+                      <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-mint/60" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+                {/* white label add-on */}
+                <div className="mt-6 pt-5 border-t border-white/10">
+                  <p className="text-[10px] uppercase tracking-widest text-cream/30 mb-2">Add-on opcional</p>
+                  <p className="text-sm font-semibold text-cream">{c.license.whiteLabelAddon.label}{" "}
+                    <span className="text-mint font-normal">{c.license.whiteLabelAddon.price}</span>
+                  </p>
+                  <p className="text-xs text-cream/45 mt-1">{c.license.whiteLabelAddon.description}</p>
+                </div>
+              </div>
+
+              {/* planos que o revendedor vende */}
+              <div className="flex flex-col gap-4">
+                <p className="text-[11px] uppercase tracking-widest text-cream/30">O que você vende para seus clientes</p>
+                <div className="grid sm:grid-cols-3 gap-4 flex-1">
+                  {c.plans.map((plan) => (
+                    <div
+                      key={plan.name}
+                      className={`rounded-xl border p-5 flex flex-col ${
+                        plan.featured
+                          ? "border-mint/40 bg-mint/5"
+                          : "border-white/10 bg-black/30"
+                      }`}
+                    >
+                      {plan.featured && (
+                        <span
+                          style={{ borderRadius: 9999 }}
+                          className="inline-block mb-2 w-fit bg-mint/20 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-mint"
+                        >
+                          Maior margem
+                        </span>
+                      )}
+                      <p className="font-display text-xl text-cream mb-1">{plan.name}</p>
+                      <p className="text-lg font-bold text-cream/80 mb-4">{plan.clientPrice}</p>
+                      <ul className="space-y-2 flex-1">
+                        {plan.features.map((f) => (
+                          <li key={f} className="flex items-start gap-2 text-xs text-cream/55">
+                            <span className="text-mint/50 mt-0.5 shrink-0">–</span>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-5 pt-4 border-t border-white/10 space-y-1">
+                        <div className="flex justify-between text-xs">
+                          <span className="text-cream/35">Repasse</span>
+                          <span className="text-cream/60">{plan.repasse}</span>
+                        </div>
+                        <div className="flex justify-between text-xs">
+                          <span className="text-cream/35">Sua margem</span>
+                          <span className="text-mint font-semibold">{plan.margin}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-xs text-cream/30 mt-1">{c.minPriceNote}</p>
+              </div>
+            </div>
+
+            {/* exemplo de receita */}
+            <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 px-7 py-6 flex flex-wrap gap-8 items-center">
+              <p className="text-xs font-semibold text-cream/40 uppercase tracking-widest">{c.example.label}</p>
+              <div className="flex flex-wrap gap-8 ml-auto">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-cream/30 mb-1">Receita bruta</p>
+                  <p className="font-display text-2xl text-cream">{c.example.revenue}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-cream/30 mb-1">Repasse Green Hub</p>
+                  <p className="font-display text-2xl text-cream/50">{c.example.repasse}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-cream/30 mb-1">Fica com você</p>
+                  <p className="font-display text-2xl text-mint">{c.example.profit}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* ocultar inferior */}
+            <div className="mt-10 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setRevealed(false)}
+                className="text-xs text-cream/30 hover:text-cream/60 transition underline underline-offset-4"
+              >
+                Ocultar
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Section>
+  );
+}
+
 /* ---------- 13. ONBOARDING ---------- */
 export function Onboarding() {
   const { content } = useContent();
