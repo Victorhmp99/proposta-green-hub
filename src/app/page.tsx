@@ -10,6 +10,7 @@ import {
   CRC,
   Cases,
   Plans,
+  EstruturaGreen,
   Onboarding,
   Closing,
   GreenClub,
@@ -29,6 +30,7 @@ export default function Home() {
       <CRC />
       <Cases />
       <Plans />
+      <EstruturaGreen />
       <Onboarding />
       <Closing />
       <GreenClub />

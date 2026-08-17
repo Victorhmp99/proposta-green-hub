@@ -702,6 +702,153 @@ export function Plans() {
   );
 }
 
+/* ---------- 12b. ESTRUTURA GREEN ---------- */
+export function EstruturaGreen() {
+  const { content } = useContent();
+  const c = content.estruturaGreen;
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <Section id="estrutura-green" tone="forest" panel>
+      {/* header */}
+      <Reveal>
+        <Eyebrow>{c.eyebrow}</Eyebrow>
+        <h2 className="text-3xl sm:text-5xl text-cream max-w-3xl">
+          {c.headingPlain}{" "}
+          <span className="text-gradient-gold font-semibold">{c.headingGold}</span>
+        </h2>
+      </Reveal>
+
+      <Reveal delay={0.08}>
+        <p className="mt-5 max-w-2xl text-cream/70 leading-relaxed">{c.intro}</p>
+      </Reveal>
+
+      {/* before / after */}
+      <Reveal delay={0.1} className="mt-14">
+        <div className="grid sm:grid-cols-2 gap-0 overflow-hidden rounded-2xl border border-white/10">
+          <div className="bg-black/40 px-6 py-5 border-b sm:border-b-0 sm:border-r border-white/10">
+            <p className="text-[11px] uppercase tracking-widest text-cream/35 mb-4">Como a clínica chega</p>
+            <ul className="space-y-3">
+              {c.beforeAfter.map((row, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-cream/55">
+                  <span className="mt-0.5 text-red-400/70 shrink-0">✕</span>
+                  {row.before}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-forest/60 px-6 py-5">
+            <p className="text-[11px] uppercase tracking-widest text-mint/60 mb-4">Como ela sai</p>
+            <ul className="space-y-3">
+              {c.beforeAfter.map((row, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-cream/80">
+                  <CheckCircle2 className="h-4 w-4 mt-0.5 shrink-0 text-mint" />
+                  {row.after}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* modules */}
+      <div className="mt-16">
+        <Reveal>
+          <p className="text-[11px] uppercase tracking-widest text-cream/35 mb-6">
+            5 módulos · {c.totalHours} de projeto
+          </p>
+        </Reveal>
+        <RevealStagger className="space-y-3">
+          {c.modules.map((mod, i) => (
+            <motion.div key={mod.number} variants={staggerItem}>
+              <button
+                type="button"
+                onClick={() => setOpen(open === i ? null : i)}
+                className="w-full text-left rounded-xl border border-white/10 bg-black/30 px-6 py-4 transition hover:border-mint/30 hover:bg-black/40"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                    <span className="font-display text-3xl text-mint/20 leading-none select-none">{mod.number}</span>
+                    <div>
+                      <p className="font-semibold text-cream">{mod.title}</p>
+                      <p className="text-xs text-cream/40 mt-0.5">{mod.hours}h de projeto</p>
+                    </div>
+                  </div>
+                  <motion.span
+                    animate={{ rotate: open === i ? 45 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="text-cream/30 text-xl leading-none shrink-0"
+                  >
+                    +
+                  </motion.span>
+                </div>
+                <AnimatePresence initial={false}>
+                  {open === i && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-4 pt-4 border-t border-white/10">
+                        <ul className="space-y-2 mb-4">
+                          {mod.items.map((item) => (
+                            <li key={item} className="flex gap-2 text-sm text-cream/65">
+                              <span className="text-mint shrink-0">–</span>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="text-xs text-mint/60 font-medium">
+                          Entregáveis: {mod.deliverables}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            </motion.div>
+          ))}
+        </RevealStagger>
+      </div>
+
+      {/* pricing */}
+      <RevealStagger className="mt-16 grid sm:grid-cols-2 gap-5">
+        {c.plans.map((plan) => (
+          <motion.div key={plan.label} variants={staggerItem}>
+            <div
+              className={`rounded-2xl border p-7 flex flex-col h-full ${
+                plan.featured
+                  ? "border-gold/50 bg-gold/5 shadow-[0_0_60px_-15px_rgba(232,196,104,0.4)]"
+                  : "border-white/10 bg-black/30"
+              }`}
+            >
+              {plan.featured && (
+                <span
+                  style={{ borderRadius: 9999 }}
+                  className="inline-block mb-3 w-fit bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-forest"
+                >
+                  Recomendado
+                </span>
+              )}
+              <p className={`font-display text-xl mb-1 ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
+                {plan.label}
+              </p>
+              <p className="text-xs text-cream/45 mb-4">{plan.duration} · {plan.hours}</p>
+              <p className="text-sm text-cream/65 leading-relaxed flex-1">{plan.description}</p>
+              <p className={`mt-6 font-display text-3xl ${plan.featured ? "text-gradient-gold" : "text-cream"}`}>
+                {plan.price}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </RevealStagger>
+    </Section>
+  );
+}
+
 /* ---------- 13. ONBOARDING ---------- */
 export function Onboarding() {
   const { content } = useContent();

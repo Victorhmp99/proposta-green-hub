@@ -277,6 +277,34 @@
       }
     ]
   },
+  "estruturaGreen": {
+    "eyebrow": "Estrutura Green",
+    "headingPlain": "Para clínicas que querem mudar de patamar —",
+    "headingGold": "não só de canal de aquisição.",
+    "intro": "Reestruturamos toda a operação da sua clínica em 90 dias. Comercial, processos, pessoas, posicionamento e indicadores — tudo integrado dentro do CRM.",
+    "beforeAfter": [
+      { "before": "Fatura bem, mas não sabe por quê", "after": "Sabe a margem exata de cada procedimento" },
+      { "before": "Agenda cheia, lucro magro", "after": "Reprecificação implementada no CRM" },
+      { "before": "Time comercial improvisa no WhatsApp", "after": "Script validado + CRM com pipeline real" },
+      { "before": "Depende de 1–2 pessoas para funcionar", "after": "Processos documentados — qualquer um executa" },
+      { "before": "Contrata na urgência, demite com prejuízo", "after": "Seleção e onboarding estruturados" },
+      { "before": "Sem métricas — 'o movimento da semana'", "after": "Dashboard: faturamento, CPL, conversão, ticket" },
+      { "before": "Posicionamento indefinido", "after": "ICP claro: procedimento certo, paciente certo, canal certo" },
+      { "before": "Base frágil para escalar", "after": "Base documentada — pronta para crescer" }
+    ],
+    "modules": [
+      { "number": "01", "title": "Comercial & CRM", "hours": 20, "items": ["Diagnóstico do funil atual", "Reprecificação de procedimentos implementada no CRM", "Script de atendimento (WhatsApp + telefone)", "Configuração completa do CRM: leads, financeiro, pipeline", "Treinamento da equipe comercial"], "deliverables": "CRM 100% configurado · Script validado · Manual comercial" },
+      { "number": "02", "title": "Operacional & Processos", "hours": 16, "items": ["Mapeamento dos processos críticos", "SOPs por área: atendimento, agenda, retorno, pós-consulta", "Fluxo de agendamento otimizado"], "deliverables": "Manual de Operações · Fluxogramas · Checklist de rotina" },
+      { "number": "03", "title": "RH & Pessoas", "hours": 14, "items": ["Análise do time atual (fit de cargo × função)", "Descrição de cargos por função", "Processo de seleção + roteiro de entrevista validado", "Modelo de onboarding para novos colaboradores"], "deliverables": "Fichas de cargo · Roteiro de seleção · Checklist de onboarding" },
+      { "number": "04", "title": "Posicionamento & Estratégia de Demanda", "hours": 12, "items": ["Diagnóstico de posicionamento atual", "Definição do ICP da clínica", "Plano de demanda 90 dias: tráfego, orgânico, indicação"], "deliverables": "Documento de posicionamento · Plano de demanda 90 dias" },
+      { "number": "05", "title": "Indicadores & Gestão", "hours": 12, "items": ["KPIs por área configurados no CRM", "Dashboard de resultado", "Protocolo de reuniões de resultado (semanal + mensal)"], "deliverables": "Dashboard ativo · Calendário de gestão · Metas por indicador" }
+    ],
+    "totalHours": "74 horas",
+    "plans": [
+      { "label": "Implementação", "duration": "30 dias", "hours": "46h de projeto", "description": "Todos os 5 módulos implementados.", "price": "R$ 20.000" },
+      { "label": "Transformação Completa", "duration": "90 dias", "hours": "74h de projeto", "description": "Implementação + 2 meses de acompanhamento e ajuste.", "price": "R$ 50.000", "featured": true }
+    ]
+  },
   "onboarding": {
     "eyebrow": "Onboarding",
     "heading": "Do contrato assinado ao primeiro paciente agendado em 10 dias.",
